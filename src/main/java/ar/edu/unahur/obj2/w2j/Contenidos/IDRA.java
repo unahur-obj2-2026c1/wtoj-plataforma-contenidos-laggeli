@@ -1,0 +1,13 @@
+package ar.edu.unahur.obj2.w2j.Contenidos;
+
+public class IDRA {
+    private static final IDRA instance = new IDRA();
+    private Double valor = 0.5;
+    private IDRA() {}
+
+    public static IDRA getInstance() { return instance; }
+
+    public Double getValor() { return valor; }
+
+    public void setValor(Double valor) { this.valor = valor; }
+}
