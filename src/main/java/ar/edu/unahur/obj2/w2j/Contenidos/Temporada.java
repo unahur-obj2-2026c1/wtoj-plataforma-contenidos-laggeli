@@ -9,16 +9,7 @@ public class Temporada {
 
     public Temporada(Integer numero) { this.numero = numero; }
 
-    public Temporada(Integer numero, List<Episodio> episodios) {
-        this.numero = numero;
-        this.episodios = episodios;
-    }
-
     public void agregarEpisodio(Episodio episodio) { episodios.add(episodio); }
 
-    public Integer getNumero() { return numero; }
-
-    public Double costo() {
-        return episodios.stream().mapToDouble(e -> e.getCosto()).average().orElse(0.0);
-    }
+    public Double costo() { return episodios.stream().mapToDouble(e -> e.getCosto()).average().orElse(0.0); }
 }

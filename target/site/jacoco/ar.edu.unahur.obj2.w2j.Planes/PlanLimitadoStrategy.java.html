@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlanLimitadoStrategy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">plataforma-contenidos</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unahur.obj2.w2j.Planes</a> &gt; <span class="el_source">PlanLimitadoStrategy.java</span></div><h1>PlanLimitadoStrategy.java</h1><pre class="source lang-java linenums">package ar.edu.unahur.obj2.w2j.Planes;
+
+import java.util.List;
+
+import ar.edu.unahur.obj2.w2j.Contenidos.Contenido;
+import ar.edu.unahur.obj2.w2j.Usuario;
+
+public abstract class PlanLimitadoStrategy implements PlanStrategy {
+    protected Integer limite;
+<span class="fc" id="L10">    protected static Double costoBase = 5.0;</span>
+    
+<span class="fc" id="L12">    public PlanLimitadoStrategy(Integer limite) { this.limite = limite; }</span>
+
+<span class="fc" id="L14">    public static Double getCostoBase() { return costoBase; }</span>
+
+<span class="fc" id="L16">    public static void setCostoBase(Double costoBase) { PlanLimitadoStrategy.costoBase = costoBase; }</span>
+
+    @Override
+    public Double costoPlan(Usuario usuario) {
+<span class="fc" id="L20">        List&lt;Contenido&gt; contenidos = usuario.getContenidos();</span>
+<span class="fc" id="L21">        Double excedentes = contenidos.stream().skip(limite).mapToDouble(Contenido::costo).sum();</span>
+<span class="fc" id="L22">        Double total = costoBase + excedentes;</span>
+<span class="fc" id="L23">        return aplicarAjuste(total);</span>
+    }
+
+<span class="fc" id="L26">    protected Double aplicarAjuste(Double total) { return total; }</span>
+
+    @Override
+<span class="fc" id="L29">    public void actualizarCosto(double valor) { costoBase = valor; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

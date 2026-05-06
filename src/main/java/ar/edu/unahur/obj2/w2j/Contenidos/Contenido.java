@@ -9,10 +9,6 @@ public abstract class Contenido {
         this.costoBase = costoBase;
     }
 
-    public String getTitulo() { return titulo; }
-
-    public void setTitulo(String titulo) { this.titulo = titulo; }
-
     public Double getCostoBase() { return costoBase; }
 
     public void setCostoBase(Double costoBase) { this.costoBase = costoBase; }
